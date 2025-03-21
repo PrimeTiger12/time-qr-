@@ -1,0 +1,75 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Live Digital Clock</title>
+</head>
+<body>
+
+<div class="container">
+    <h1>Current Time</h1>
+    <div id="clock"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html><style>/* Body Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #2E3192, #1BFFFF);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+/* Container Styling */
+.container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    color: #fff;
+}
+
+/* Heading Styling */
+h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Clock Styling */
+#clock {
+    font-size: 3em;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+}</style><script>function updateTime() {
+    const clockElement = document.getElementById('clock');
+    const now = new Date();
+
+    let hours = now.getHours();
+    const minutes = now.getMinutes();
+    const seconds = now.getSeconds();
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+
+    hours = hours % 12;
+    hours = hours ? hours : 12; // Convert 0 to 12
+    const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
+    const formattedSeconds = seconds < 10 ? '0' + seconds : seconds;
+
+    const timeString = `${hours}:${formattedMinutes}:${formattedSeconds} ${ampm}`;
+    clockElement.textContent = timeString;
+}
+
+// Update time every second
+setInterval(updateTime, 1000);
+
+// Initial call to show time immediately
+updateTime();</script>
